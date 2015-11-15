@@ -27,7 +27,7 @@ Example for simple `.vimrc` file:
 let mapleader = "\<Space>"
 
 " vimrc includes this additional color scheme
-colorscheme wombat256mod
+colorscheme jellybeans
 
 call plug#begin()
 
