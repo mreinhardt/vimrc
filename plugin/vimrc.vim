@@ -49,8 +49,12 @@ set incsearch
 
 " Indent using four spaces.
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
+
+" Disable smart indent on paste
+set paste
 
 " Use `Ctrl-L` to clear the highlighting of :set hlsearch.
 nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
@@ -313,3 +317,47 @@ vmap <silent> <expr> p <sid>Repl()
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
 omap s :normal vs<CR>
+
+" Custom
+
+" Column markers at 80, 100, 120
+set textwidth=79
+set colorcolumn=+1,+2,+21,+22,+41,+42
+highlight ColorColumn ctermfg=125 ctermbg=232
+
+" Current line highlight color
+:highlight CursorLine ctermbg=235
+
+" Set line numbers in directory view
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+
+" Automatically show matching brackets
+set showmatch
+
+""" Key bindings
+
+" Leader binding
+let mapleader = "\<Space>"
+
+" Jump to end of paste
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
+" Writes and Quits
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>Q :qa<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>W :wqa<CR>
+
+" Dir view
+nnoremap <Leader>o :Explore<CR>
+
+" Paging
+nmap <Leader>b <C-u>
+nmap <Leader><Leader> <C-d>
+
+" Easier jump to line
+nnoremap <CR> G
+nnoremap <BS> gg
+
