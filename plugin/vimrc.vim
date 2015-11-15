@@ -1,6 +1,6 @@
 " vimrc.vim - Extension of vim-sensible plugin with less sensible defaults.
-" Maintainer:   Adam Stankiewicz <sheerun@sher.pl>
-" Version:      2.0
+"             Based on https://github.com/sheerun/vimrc
+" Maintainer: Mike Reinhardt
 
 if exists("g:loaded_vimrc") || &cp
   finish
@@ -47,9 +47,9 @@ set ttimeoutlen=100
 " Enable highlighted case-insensitive incremential search.
 set incsearch
 
-" Indent using two spaces.
-set tabstop=2
-set shiftwidth=2
+" Indent using four spaces.
+set tabstop=4
+set shiftwidth=4
 set expandtab
 
 " Use `Ctrl-L` to clear the highlighting of :set hlsearch.
@@ -133,7 +133,7 @@ endif
 
 "" Extras
 
-" Set monako font if using macvim
+" Set monaco font if using macvim
 if has("gui_macvim")
   set guifont=Monaco:h13
 endif
@@ -153,8 +153,8 @@ end
 " Highlight line under cursor. It helps with navigation.
 set cursorline
 
-" Keep 8 lines above or below the cursor when scrolling.
-set scrolloff=8
+" Keep 4 lines above or below the cursor when scrolling.
+set scrolloff=4
 
 " Keep 15 columns next to the cursor when scrolling horizontally.
 set sidescroll=1
@@ -212,7 +212,7 @@ set viminfo='100,f1
 set hlsearch
 
 " Ignore case when searching.
-set ignorecase
+" set ignorecase
 
 " Show mode in statusbar, not separately.
 set noshowmode
@@ -227,7 +227,8 @@ set iskeyword+=-
 " Add gems.tags to files searched for tags.
 set tags+=gems.tags
 
-" Disable output, vcs, archive, rails, temp and backup files.
+" Disable output, vcs, archive, build, temp and backup files.
+set wildignore+=*.pyc,*.pyo,*.egg,*.egg-info,.DS_Store
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
@@ -304,7 +305,7 @@ endfunction
 vmap <silent> <expr> p <sid>Repl()
 
 " Prevent common mistake of pressing q: instead :q
-map q: :q
+" map q: :q
 
 " Make a simple "search" text object.
 " http://vim.wikia.com/wiki/Copy_or_change_search_hit
