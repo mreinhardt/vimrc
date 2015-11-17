@@ -245,6 +245,9 @@ noremap N Nzz
 " Visually select the text that was last edited/pasted (Vimcast#26).
 noremap gV `[v`]
 
+" Set path to project root
+set path=$PWD/**
+
 " Expand %% to path of current buffer in command mode.
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
@@ -322,11 +325,11 @@ omap s :normal vs<CR>
 
 " Column markers at 80, 100, 120
 set textwidth=79
-set colorcolumn=+1,+2,+21,+22,+41,+42
-highlight ColorColumn ctermfg=125 ctermbg=232
+set colorcolumn=+1,+2,+41,+42
+highlight ColorColumn ctermfg=125 ctermbg=238
 
 " Current line highlight color
-:highlight CursorLine ctermbg=235
+:highlight CursorLine ctermbg=236
 
 " Set line numbers in directory view
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
@@ -352,6 +355,8 @@ nnoremap <Leader>W :wqa<CR>
 
 " Dir view
 nnoremap <Leader>o :Explore<CR>
+nnoremap <Leader>n :Nexplore<CR>
+nnoremap <Leader>p :Pexplore<CR>
 
 " Paging
 nmap <Leader>b <C-u>
@@ -360,4 +365,10 @@ nmap <Leader><Leader> <C-d>
 " Easier jump to line
 nnoremap <CR> G
 nnoremap <BS> gg
+
+" Move to split
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-H> <C-W>h
+map <C-L> <C-W>l
 
