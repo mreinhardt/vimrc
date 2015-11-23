@@ -53,9 +53,6 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
-" Disable smart indent on paste
-set paste
-
 " Use `Ctrl-L` to clear the highlighting of :set hlsearch.
 nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 
@@ -323,7 +320,7 @@ omap s :normal vs<CR>
 
 " Custom
 
-" Column markers at 80, 100, 120
+" Column markers at 80, 120
 set textwidth=79
 set colorcolumn=+1,+2,+41,+42
 highlight ColorColumn ctermfg=125 ctermbg=238
@@ -341,6 +338,13 @@ set showmatch
 
 " Leader binding
 let mapleader = "\<Space>"
+
+" Ergo
+inoremap <C-H> <Left>
+inoremap <C-J> <Down>
+inoremap <C-K> <Up>
+inoremap <C-L> <Right>
+inoremap <C-D> <Esc>
 
 " Jump to end of paste
 vnoremap <silent> y y`]
@@ -369,6 +373,4 @@ nnoremap <BS> gg
 " Move to split
 map <C-J> <C-W>j
 map <C-K> <C-W>k
-map <C-H> <C-W>h
-map <C-L> <C-W>l
 
