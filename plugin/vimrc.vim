@@ -15,7 +15,7 @@ set nocompatible
 
 " Turn on filetype plugins (:help filetype-plugin).
 if has('autocmd')
-  filetype plugin indent on
+  silent filetype plugin indent on
 endif
 
 " Enable syntax highlighting.
@@ -173,8 +173,8 @@ set switchbuf=usetab
 set hidden
 
 " Wrap lines by default
-set wrap linebreak
-set showbreak=" "
+"set wrap linebreak
+"set showbreak=" "
 
 " Allow easy navigation between wrapped lines.
 vmap j gj
@@ -201,7 +201,7 @@ set foldnestmax=3
 set nofoldenable
 
 " Enable mouse for scrolling and window resizing.
-set mouse=a
+" set mouse=a
 
 " Disable swap to prevent annoying messages.
 set noswapfile
@@ -322,7 +322,7 @@ omap s :normal vs<CR>
 
 " Column markers at 80, 120
 set textwidth=79
-set colorcolumn=+1,+2,+41,+42
+set colorcolumn=+1,+41
 highlight ColorColumn ctermfg=125 ctermbg=238
 
 " Current line highlight color
@@ -342,7 +342,7 @@ let mapleader = "\<Space>"
 " Ergo
 inoremap <C-H> <Left>
 inoremap <C-J> <Down>
-inoremap <C-K> <Up>
+"inoremap <C-K> <Up>
 inoremap <C-L> <Right>
 inoremap <C-D> <Esc>
 
@@ -354,8 +354,15 @@ nnoremap <silent> p p`]
 " Writes and Quits
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :qa<CR>
+nnoremap <Leader>! :q!<CR>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>W :wqa<CR>
+nnoremap <Leader>W :wq<CR>
+
+" vimrcs
+nnoremap <Leader>ev :split $MYVIMRC<CR>
+nnoremap <Leader>eg :split ~/.vim/plugged/vimrc/plugin/vimrc.vim<CR>
+nnoremap <Leader>rv :so $MYVIMRC<CR>
+nnoremap <Leader>rg :so ~/.vim/plugged/vimrc/plugin/vimrc.vim<CR>
 
 " Dir view
 nnoremap <Leader>o :Explore<CR>
@@ -363,14 +370,45 @@ nnoremap <Leader>n :Nexplore<CR>
 nnoremap <Leader>p :Pexplore<CR>
 
 " Paging
-nmap <Leader>b <C-u>
-nmap <Leader><Leader> <C-d>
+nnoremap <Leader>b <C-u>
+nnoremap <Leader><Leader> <C-d>
 
 " Easier jump to line
 nnoremap <CR> G
 nnoremap <BS> gg
 
+" Split
+nnoremap <Leader>sh :split<CR>
+nnoremap <Leader>sv :vsplit<CR>
+
 " Move to split
-map <C-J> <C-W>j
-map <C-K> <C-W>k
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
+
+" Move lines
+nnoremap <Leader>j :m .+1<CR>==
+nnoremap <Leader>k :m .-2<CR>==
+vnoremap <Leader>j :m '>+1<CR>gv=gv
+vnoremap <Leader>k :m '<-2<CR>gv=gv
+
+" Surrounds
+inoremap '' ''<ESC>i
+inoremap "" ""<ESC>i
+inoremap (( ()<ESC>i
+inoremap [[ []<ESC>i
+inoremap {{ {}<ESC>i
+inoremap << <><ESC>i
+
+" Toggle tab style
+nnoremap <Leader>tt :set noet ci pi sts=0 sw=4 ts=4<CR>
+nnoremap <Leader>ts :set et noci nopi sts=4 sw=4 ts=4<CR>
+
+" Find/replace
+func FindAndChangeIn()
+    let captured_char = nr2char(getchar())
+    return 'f' . captured_char . "ci" . captured_char
+endfunc
+nnoremap <expr> <Leader>fc FindAndChangeIn()
 
