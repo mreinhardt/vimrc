@@ -321,8 +321,15 @@ omap s :normal vs<CR>
 " Custom
 
 " Column markers at 80, 120
-set textwidth=79
-set colorcolumn=+1,+41
+if has('autocmd')
+  autocmd FileType python set textwidth=79
+  autocmd FileType python set colorcolumn=+1,+41
+  autocmd FileType clojure set textwidth=99
+  autocmd FileType clojure set colorcolumn=+1
+else
+  set textwidth=99
+  set colorcolumn=+1
+endif
 highlight ColorColumn ctermfg=125 ctermbg=238
 
 " Current line highlight color
