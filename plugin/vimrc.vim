@@ -206,8 +206,26 @@ set nofoldenable
 " Disable swap to prevent annoying messages.
 set noswapfile
 
-" Save up to 100 marks, enable capital marks.
-set viminfo='100,f1
+" Tell vim to remember certain things when we exit
+"  '100 :  marks will be remembered for up to 100 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :100 :  up to 100 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='100,\"100,:100,%,n~/.viminfo
+
+" Restore cursor to previous location when reopening file
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
 
 " Enable search highlighting.
 set hlsearch
@@ -358,6 +376,9 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
+" Toggle paste mode
+set pastetoggle=<Leader><Shift>v
+
 " Writes and Quits
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :qa<CR>
@@ -373,12 +394,10 @@ nnoremap <Leader>rg :so ~/.vim/plugged/vimrc/plugin/vimrc.vim<CR>
 
 " Dir view
 nnoremap <Leader>o :Explore<CR>
-nnoremap <Leader>n :Nexplore<CR>
-nnoremap <Leader>p :Pexplore<CR>
 
 " Paging
-nnoremap <Leader>b <C-u>
-nnoremap <Leader><Leader> <C-d>
+" nnoremap <Leader>b <C-u>
+" nnoremap <Leader><Leader> <C-d>
 
 " Easier jump to line
 nnoremap <CR> G
@@ -394,6 +413,11 @@ nnoremap <C-K> <C-W>k
 nnoremap <C-H> <C-W>h
 nnoremap <C-L> <C-W>l
 
+" Move to buffer
+nnoremap <Leader>n :bn<CR>
+nnoremap <Leader>p :bp<CR>
+nnoremap <Leader>b :ls<CR>:b<Space>
+
 " Move lines
 nnoremap <Leader>j :m .+1<CR>==
 nnoremap <Leader>k :m .-2<CR>==
@@ -401,12 +425,12 @@ vnoremap <Leader>j :m '>+1<CR>gv=gv
 vnoremap <Leader>k :m '<-2<CR>gv=gv
 
 " Surrounds
-inoremap '' ''<ESC>i
-inoremap "" ""<ESC>i
-inoremap (( ()<ESC>i
-inoremap [[ []<ESC>i
-inoremap {{ {}<ESC>i
-inoremap << <><ESC>i
+" inoremap '' ''<ESC>i
+" inoremap "" ""<ESC>i
+" inoremap (( ()<ESC>i
+" inoremap [[ []<ESC>i
+" inoremap {{ {}<ESC>i
+" inoremap << <><ESC>i
 
 " Toggle tab style
 nnoremap <Leader>tt :set noet ci pi sts=0 sw=4 ts=4<CR>
