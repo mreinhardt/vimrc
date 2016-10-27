@@ -356,6 +356,9 @@ highlight ColorColumn ctermfg=125 ctermbg=238
 " Set line numbers in directory view
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
+" Disable netrw banner
+let g:netrw_banner = 0
+
 " Automatically show matching brackets
 set showmatch
 
