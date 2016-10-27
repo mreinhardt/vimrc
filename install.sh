@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-HEREDIR=$(dirname $0)
+HEREDIR=$(pwd)
 
 read -p "Installing to SSH server? [yN] " IS_SSH
 if [[ $IS_SSH = "y" || $IS_SSH = "Y" ]]; then
     DEFAULTDIR=$HOME/.mvim
-    IS_SSH=1
+    IS_SSH=true
 else
     DEFAULTDIR=$HOME/.vim
-    IS_SSH=''
+    IS_SSH=false
 fi
 
 read -p "What directory to install to? [default: $DEFAULTDIR] " INSTALLDIR
@@ -19,13 +19,15 @@ cp $HEREDIR/colors/* $INSTALLDIR/colors/.
 curl -fLo $INSTALLDIR/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-if [[ -n $IS_SSH ]]; then
-    VIMRC=$HEREDIR/.vimrc
-else
+if [[ $IS_SSH == true ]]; then
     VIMRC=$HEREDIR/.ssh.vimrc
+else
+    VIMRC=$HEREDIR/.vimrc
 fi
+echo $VIMRC
 ln -s $VIMRC $INSTALLDIR/.vimrc
-alias vm="vim -u $INSTALLDIR/.vimrc"
 
-vm -c PlugInstall -c qa
+vim -u $INSTALLDIR/.vimrc -c PlugInstall -c qa
+
+echo "Add \`alias vm='vim -u $INSTALLDIR/.vimrc'\` to execute your custom vim with \`vm\`"
 

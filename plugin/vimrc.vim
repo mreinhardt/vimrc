@@ -382,7 +382,6 @@ set pastetoggle=<Leader><Shift>v
 " Writes and Quits
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>Q :qa<CR>
-nnoremap <Leader>! :q!<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>W :wq<CR>
 
@@ -391,6 +390,11 @@ nnoremap <Leader>ev :split $MYVIMRC<CR>
 nnoremap <Leader>eg :split ~/.vim/plugged/vimrc/plugin/vimrc.vim<CR>
 nnoremap <Leader>rv :so $MYVIMRC<CR>
 nnoremap <Leader>rg :so ~/.vim/plugged/vimrc/plugin/vimrc.vim<CR>
+
+" Toggles
+nmap <Leader># :setlocal number! relativenumber!<CR>
+nmap <Leader>> :set paste!<CR>
+nmap <Leader>< :setlocal wrap!<CR>:setlocal wrap?<CR>
 
 " Dir view
 nnoremap <Leader>o :Explore<CR>
@@ -442,4 +446,18 @@ func FindAndChangeIn()
     return 'f' . captured_char . "ci" . captured_char
 endfunc
 nnoremap <expr> <Leader>fc FindAndChangeIn()
+
+" Emacs style command line movements
+:cnoremap <C-a>  <Home>
+:cnoremap <C-e>  <End>
+:cnoremap <C-b>  <Left>
+:cnoremap <C-f>  <Right>
+:cnoremap <C-d>  <Delete>
+:cnoremap <M-b>  <S-Left>
+:cnoremap <M-f>  <S-Right>
+:cnoremap <M-d>  <S-right><Delete>
+:cnoremap <Esc>b <S-Left>
+:cnoremap <Esc>f <S-Right>
+:cnoremap <Esc>d <S-right><Delete>
+:cnoremap <C-g>  <C-c>
 
