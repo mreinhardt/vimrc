@@ -348,10 +348,14 @@ else
   set textwidth=99
   set colorcolumn=+1
 endif
-highlight ColorColumn ctermfg=125 ctermbg=238
+highlight ColorColumn ctermfg=125 ctermbg=020
 
 " Current line highlight color
-:highlight CursorLine ctermbg=236
+highlight CursorLine ctermbg=018
+
+" Transparent background
+hi Normal guibg=NONE ctermbg=NONE
+hi NonText guibg=NONE ctermbg=NONE
 
 " Set line numbers in directory view
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
@@ -464,3 +468,5 @@ nnoremap <expr> <Leader>fc FindAndChangeIn()
 :cnoremap <Esc>d <S-right><Delete>
 :cnoremap <C-g>  <C-c>
 
+" Toggle spellcheck
+nnoremap <Leader>S :setlocal spell! spelllang=en_us<CR>
