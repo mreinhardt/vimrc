@@ -1,6 +1,6 @@
 " Mike Reinhardt .vimrc
 " Requires https://github.com/junegunn/vim-plug
-" Requires https://github.com/powerline/powerline
+
 
 set t_Co=256
 set t_ut=  " ensure tmux colors work correctly
@@ -9,6 +9,9 @@ colorscheme lapis256
 " lapis overrides
   highlight ColorColumn ctermfg=125 ctermbg=020
   highlight CursorLine ctermbg=018
+" transparent bg
+hi Normal guibg=NONE ctermbg=NONE
+hi NonText guibg=NONE ctermbg=NONE
 
 
 " Plugins
@@ -16,14 +19,15 @@ call plug#begin()
 Plug 'mreinhardt/vimrc'
 Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
 Plug 'kien/ctrlp.vim'
 Plug 'haya14busa/incsearch.vim'
+Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/ag.vim'
+Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'airblade/vim-gitgutter'
 Plug 'sukima/xmledit'
 Plug 'scrooloose/syntastic'
@@ -33,14 +37,24 @@ Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-classpath'
 Plug 'tpope/vim-fireplace'
 Plug 'guns/vim-clojure-highlight'
+Plug 'bling/vim-bufferline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'lilydjwg/colorizer'
 Plug 'vim-scripts/CSSMinister'
 Plug 'junegunn/vader.vim'
-Plug 'lilydjwg/colorizer'
 call plug#end()
 
 
-" Powerline
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+let mapleader = "\<Space>"
+set relativenumber
+
+" Airline
+let g:airline_theme='behelit'
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=1
+let g:airline_skip_empty_sections=1
+let g:airline#extensions#virtualenv#enabled=1
 
 " incsearch
 map /  <Plug>(incsearch-forward)
@@ -96,3 +110,4 @@ autocmd BufRead *.clj try | silent! Require | catch /^Fireplace/ | endtry
 filetype indent off
 au BufRead,BufNewFile *.sls set filetype=yaml
 au BufRead,BufNewFile *.erb set filetype=eruby.html
+

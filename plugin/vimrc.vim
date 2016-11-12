@@ -366,6 +366,10 @@ let g:netrw_banner = 0
 " Automatically show matching brackets
 set showmatch
 
+" Set matching bracket color
+highlight MatchParen cterm=none ctermbg=232 ctermfg=46
+
+
 """ Key bindings
 
 " Leader binding
@@ -429,6 +433,9 @@ nnoremap <Leader>n :bn<CR>
 nnoremap <Leader>p :bp<CR>
 nnoremap <Leader>b :ls<CR>:b<Space>
 
+" Tabs
+nnoremap <Leader>T :tabnew<CR>:b#<BAR>bd#<CR>
+
 " Move lines
 nnoremap <Leader>j :m .+1<CR>==
 nnoremap <Leader>k :m .-2<CR>==
@@ -470,3 +477,4 @@ nnoremap <expr> <Leader>fc FindAndChangeIn()
 
 " Toggle spellcheck
 nnoremap <Leader>S :setlocal spell! spelllang=en_us<CR>
+
